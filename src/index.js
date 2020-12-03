@@ -105,6 +105,14 @@ FastImage.preload = sources => {
     FastImageViewNativeModule.preload(sources)
 }
 
+FastImage.getCacheSize = () => {
+    return FastImageViewNativeModule.getCacheSize()
+}
+
+FastImage.clearCache = () => {
+    return FastImageViewNativeModule.clearCache ();
+}
+
 FastImage.defaultProps = {
     resizeMode: FastImage.resizeMode.cover,
 }

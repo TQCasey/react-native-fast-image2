@@ -145,6 +145,9 @@ interface FastImageStatic extends React.ComponentClass<FastImageProperties> {
     }
 
     preload(sources: FastImageSource[]): void
+    getCacheSize() : Promise<Number>
+    clearCache () : Promise<boolean>
+    
 }
 
 declare var FastImage: FastImageStatic
