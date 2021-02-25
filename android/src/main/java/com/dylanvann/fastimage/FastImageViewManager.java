@@ -39,6 +39,7 @@ class FastImageViewManager extends SimpleViewManager<FastImageViewWithUrl> imple
 
     @Nullable
     private RequestManager requestManager = null;
+    private boolean sizeOriginal = false;
 
     @Override
     public String getName() {
@@ -52,6 +53,12 @@ class FastImageViewManager extends SimpleViewManager<FastImageViewWithUrl> imple
         }
 
         return new FastImageViewWithUrl(reactContext);
+    }
+
+    @ReactProp(name = "useSizeOriginal")
+    public void setSizeOriginal(FastImageViewWithUrl view, @Nullable boolean useSizeOriginal) {
+//        System.out.println("Glide sizeOriginal " + (sizeOriginal ? "true" : "false"));
+        sizeOriginal = useSizeOriginal;
     }
 
     @ReactProp(name = "source")
@@ -107,6 +114,9 @@ class FastImageViewManager extends SimpleViewManager<FastImageViewWithUrl> imple
                     .apply(FastImageViewConverter.getOptions(context, imageSource, source))
                     .listener(new FastImageRequestListener(key))
                     .into(view);
+
+            // Restore sizeOriginal after used
+            sizeOriginal = false;
         }
     }
 
