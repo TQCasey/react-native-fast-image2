@@ -111,9 +111,12 @@ class FastImageViewConverter {
             .diskCacheStrategy(diskCacheStrategy)
             .onlyRetrieveFromCache(onlyFromCache)
             .skipMemoryCache(skipMemoryCache)
-            .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
             .priority(priority)
             .placeholder(TRANSPARENT_DRAWABLE);
+
+        if (sizeOriginal) {
+            options = options.override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL);
+        }
         
         if (imageSource.isResource()) {
             // Every local resource (drawable) in Android has its own unique numeric id, which are
